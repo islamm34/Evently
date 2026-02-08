@@ -1,15 +1,22 @@
-
+import 'package:evently2/ui/model/user_dm.dart';
 import 'package:flutter/material.dart';
 
 import '../model/event_dm.dart';
+import '../model/firebase_utilits/firebase_functions.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_styles.dart';
 
-class EventWidget extends StatelessWidget {
+class EventWidget extends StatefulWidget {
   final EventDM eventDM;
+  final VoidCallback? onFavoriteChanged;
 
-  const EventWidget({super.key, required this.eventDM});
+  const EventWidget({super.key, required this.eventDM, this.onFavoriteChanged});
 
+  @override
+  State<EventWidget> createState() => _EventWidgetState();
+}
+
+class _EventWidgetState extends State<EventWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +29,7 @@ class EventWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
-              eventDM.categoryDM.imagePath,
+              widget.eventDM.categoryDM.imagePath,
               fit: BoxFit.fill,
               height: double.infinity,
               width: double.infinity,
@@ -48,7 +55,7 @@ class EventWidget extends StatelessWidget {
           color: AppColors.offWhite,
         ),
         child: Text(
-          "${eventDM.dateTime.day} Jan",
+          "${widget.eventDM.dateTime.day} Jan",
           textAlign: TextAlign.start,
           style: AppTextStyles.blue14SemiBold,
         ),
@@ -68,14 +75,28 @@ class EventWidget extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            eventDM.title,
+            widget.eventDM.title,
             style: AppTextStyles.blue14SemiBold,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
         ),
-        Icon(false ? Icons.favorite : Icons.favorite_border, color: AppColors.blue,),
-      ],
+        InkWell(
+          onTap: () async {
+            if (UserDM.currentUser!.favoriteEvents.contains(widget.eventDM.id)) {
+              await removeEventFromFavorite(widget.eventDM.id, UserDM.currentUser!);
+            } else {
+              await addEventToFavorite(widget.eventDM.id, UserDM.currentUser!);
+            }
+            setState(() {});
+          },
+          child: Icon(
+            UserDM.currentUser!.favoriteEvents.contains(widget.eventDM.id)
+                ? Icons.favorite
+                : Icons.favorite_border,
+            color: AppColors.blue,
+          ),
+        ),      ],
     ),
   );
 }

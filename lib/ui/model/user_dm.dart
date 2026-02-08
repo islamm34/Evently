@@ -1,6 +1,5 @@
-UserDM? currentUser;
-
 class UserDM {
+  static const collectionName = "users";
   static UserDM? currentUser;
   String id;
   String email;
@@ -25,6 +24,7 @@ class UserDM {
       email: json["email"],
       address: json["address"],
       phoneNumber: json["phone_number"],
+      favoriteEvents: List<String>.from(json["favorites"] ?? []),
     );
   }
 

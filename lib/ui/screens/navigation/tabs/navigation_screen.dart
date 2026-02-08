@@ -1,12 +1,13 @@
 
 import 'package:evently2/ui/screens/navigation/tabs/home/home_tab.dart';
+import 'package:evently2/ui/screens/navigation/tabs/profile/profile_tab.dart';
 import 'package:evently2/ui/screens/navigation/tabs/settings/settings_tab.dart';
 import 'package:flutter/material.dart';
 
 
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_routes.dart';
-import 'favorites/favorites_tab.dart';
+import 'favorite/favorite_tab.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -17,7 +18,7 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> {
   var selectedIndex = 0;
-  var tabs = [HomeTab(), FavoritesTab(), SettingsTab()];
+  var tabs = [HomeTab(), FavoriteTab(), ProfileTab()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(

@@ -33,84 +33,85 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: AppColors.offWhite,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Image.asset(AppAssets.appLogo),
-              SizedBox(height: 48),
-              Text(
-                localization.loginHeaderMessage,
-                style: AppTextStyles.blue24SemiBold,
-              ),
-              SizedBox(height: 24),
-              AppTextField(
-                hint: localization.emailHint,
-                prefixIcon: SvgPicture.asset(AppAssets.icEmailSvg),
-                controller: emailController,
-              ),
-              SizedBox(height: 16),
-              AppTextField(
-                hint: localization.passwordHint,
-                suffixIcon: SvgPicture.asset(AppAssets.icEyeClosedSvg),
-                prefixIcon: SvgPicture.asset(AppAssets.icLockSvg),
-                isPassword: true,
-                controller: passwordController,
-              ),
-              SizedBox(height: 8),
-              Text(
-                localization.forgetPassword,
-                textAlign: TextAlign.end,
-                style: AppTextStyles.blue14SemiBold.copyWith(
-                  decoration: TextDecoration.underline,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Image.asset(AppAssets.appLogo),
+                SizedBox(height: 48),
+                Text(
+                  localization.loginHeaderMessage,
+                  style: AppTextStyles.blue24SemiBold,
                 ),
-              ),
-              SizedBox(height: 48),
-              buildLoginButton(),
-              SizedBox(height: 48),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context, AppRoutes.register);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      localization.dontHaveAccount,
-                      style: AppTextStyles.grey14Regular,
-                    ),
-                    Text(
-                      localization.signUp,
-                      style: AppTextStyles.blue14SemiBold.copyWith(
-                        decoration: TextDecoration.underline,
+                SizedBox(height: 24),
+                AppTextField(
+                  hint: localization.emailHint,
+                  prefixIcon: SvgPicture.asset(AppAssets.icEmailSvg),
+                  controller: emailController,
+                ),
+                SizedBox(height: 16),
+                AppTextField(
+                  hint: localization.passwordHint,
+                  suffixIcon: SvgPicture.asset(AppAssets.icEyeClosedSvg),
+                  prefixIcon: SvgPicture.asset(AppAssets.icLockSvg),
+                  isPassword: true,
+                  controller: passwordController,
+                ),
+                SizedBox(height: 8),
+                Text(
+                  localization.forgetPassword,
+                  textAlign: TextAlign.end,
+                  style: AppTextStyles.blue14SemiBold.copyWith(
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+                SizedBox(height: 48),
+                buildLoginButton(),
+                SizedBox(height: 48),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context, AppRoutes.register);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        localization.dontHaveAccount,
+                        style: AppTextStyles.grey14Regular,
                       ),
-                    ),
-                  ],
+                      Text(
+                        localization.signUp,
+                        style: AppTextStyles.blue14SemiBold.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 32),
-              Text(
-                localization.or,
-                textAlign: TextAlign.center,
-                style: AppTextStyles.blue14SemiBold,
-              ),
-              SizedBox(height: 32),
-              EventlyButton(
-                text: localization.googleLogin,
-                onPress: () {},
-                backgroundColor: AppColors.white,
-                textStyle: AppTextStyles.blue18Medium,
-                icon: SvgPicture.asset(
-                    height: 24,
-                    width: 24,
-                    AppAssets.icons8google),
-              ),
-            ],
+                SizedBox(height: 32),
+                Text(
+                  localization.or,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.blue14SemiBold,
+                ),
+                SizedBox(height: 32),
+                EventlyButton(
+                  text: localization.googleLogin,
+                  onPress: () {},
+                  backgroundColor: AppColors.white,
+                  textStyle: AppTextStyles.blue18Medium,
+                  icon: SvgPicture.asset(
+                      height:  24,
+                      width: 24,
+                      AppAssets.icons8google)
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-
   EventlyButton buildLoginButton() => EventlyButton(
     text: AppLocalizations.of(context)!.login,
     onPress: () async {
