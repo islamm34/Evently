@@ -1,43 +1,31 @@
-name: qora
-description: "Qora - Smart Queue Management Platform. A modern, enterprise-level Flutter application for connecting service seekers with service providers."
+# pubspec.yaml
+name: coffee_shop_ui
+description: Premium Coffee Shop Mobile Application UI
 publish_to: 'none'
-
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-
-  # UI & Icons
-  cupertino_icons: ^1.0.6
-
-  # Routing (simplified)
-  go_router: ^17.3.0
-
-  # Animations & Transitions
-  animations: ^2.0.11
-
-  # Utilities
-  intl: ^0.20.2
-
-  # QR Code Generation
-  qr_flutter: ^4.1.0
+  google_fonts: ^6.2.1
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
+  smooth_page_indicator: ^1.2.0+3
+  flutter_staggered_animations: ^1.1.1
+  page_transition: ^2.1.0
+  glassmorphism_ui: ^0.3.0
+  dotted_border: ^2.1.0
+  animated_rating_stars: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^3.0.0
 
-  flutter_lints: ^6.0.0
-
-# The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
